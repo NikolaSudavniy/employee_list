@@ -11,7 +11,7 @@
     <div class="form-group">
       <CustomSelect
         v-model="localSelectedPosition"
-        :options="props.positions"
+        :options="positions"
         label="Должность"
         placeholder="Выберите должность"
       />
@@ -20,33 +20,43 @@
 </template>
 
 <script setup lang="ts">
-	import { ref, watch } from 'vue'
-	import CustomSelect from './CustomSelect.vue'
+  import { ref, watch, watchEffect } from 'vue'
+  import CustomSelect from './CustomSelect.vue'
 
-	const props = defineProps<{
-		searchQuery: string
-		selectedPosition: string
-		positions: string[]
-	}>()
+  const props = defineProps<{
+    searchQuery: string
+    selectedPosition: string
+    positions: string[]
+  }>()
 
-	const emit = defineEmits<{
-		(e: 'update:searchQuery', value: string): void
-		(e: 'update:selectedPosition', value: string): void
-	}>()
+  const emit = defineEmits<{
+    (e: 'update:searchQuery', value: string): void
+    (e: 'update:selectedPosition', value: string): void
+  }>()
 
-	const localSearchQuery = ref(props.searchQuery)
-	const localSelectedPosition = ref(props.selectedPosition)
+  const localSearchQuery = ref(props.searchQuery)
+  const localSelectedPosition = ref(props.selectedPosition)
 
-	watch(localSearchQuery, (val) => emit('update:searchQuery', val))
-	watch(localSelectedPosition, (val) => emit('update:selectedPosition', val))
+  watch(localSearchQuery, (val) => emit('update:searchQuery', val))
+  watch(localSelectedPosition, (val) => {
+    emit('update:selectedPosition', val === 'Все' ? '' : val)
+  })
 
-	const positions = props.positions
+  const positions = ref<string[]>([])
+  watchEffect(() => {
+    positions.value = ['Все', ...props.positions.filter(p => p !== 'Все')]
+  })
 </script>
 
 <style scoped>
-	.employee-filters {
-		display: flex;
-		gap: 1rem;
-		margin-bottom: 1rem;
-	}
+  .employee-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group {
+    flex: 1 1 200px;
+  }
 </style>
