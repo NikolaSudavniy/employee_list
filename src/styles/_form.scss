@@ -1,0 +1,155 @@
+.form-group {
+  display: flex;
+  flex-direction: column;
+  vertical-align: top;
+  position: relative;
+  margin-bottom: $spacing-md;
+
+  .text-label,
+  .select-label {
+    color: $text-secondary;
+    background: #fff;
+    font-size: 1rem;
+    line-height: 1.4375em;
+    letter-spacing: 0.00938em;
+    padding: 0px;
+    display: block;
+    transform-origin: left top 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transition: color 200ms cubic-bezier(0, 0, 0.2, 1), transform 200ms cubic-bezier(0, 0, 0.2, 1), max-width 200ms cubic-bezier(0, 0, 0.2, 1);
+    z-index: 1;
+    pointer-events: none;
+    transform: translate(14px, 16px) scale(1);
+    max-width: calc(100% - 24px);
+  }
+
+	.text-label{
+		padding-right: 15px;
+	}
+
+  .field-input,
+  select {
+    font-size: 1rem;
+    line-height: 1.4375em;
+    letter-spacing: 0.00938em;
+    color: var(--text-color);
+    background: #ffffff;
+    cursor: text;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    min-height: 36px;
+    padding: 16px 14px;
+    border: 1px solid $light-color;
+    border-radius: $border-radius;
+    outline: none;
+  } 
+
+
+  &:hover .field-input,
+  &:hover select{
+    border-color: $text-color;
+  }
+
+  &.focused .field-input,
+  &.focused select{
+    border-color: $primary-color;
+  }
+
+  &.focused .text-label,
+  &.focused .select-label{
+    color: $primary-color;
+  }
+
+  &.focused .text-label,
+  &.filled .text-label,
+  .select-label{
+    padding: 0 8px;
+    user-select: none;
+    pointer-events: auto;
+    transform: translate(8px, -9px) scale(0.75);
+  }
+  
+  &.invalid label:not(.switch-label){
+    color: $error-color;
+  }
+
+  &.invalid .field-input,
+  &.invalid select {
+    border-color: $error-color;
+  }
+
+  
+  &.invalid {
+    border-color: $error-color;
+  }
+
+  .error {
+    color: $error-color;
+    font-size: 12px;
+    margin-top: $spacing-xs;
+    display: block;
+  }
+  
+
+  select {
+    padding-right: 32px;
+  }
+
+  .error {
+    color:  $error-color;
+    font-size: 12px;
+    margin-top: $spacing-xs;
+  }
+
+}
+
+.switch-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .switch {
+    display: none;
+  }
+  
+  .switch-label {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+    background-color: #ccc;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .switch-label::before {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .switch:checked + .switch-label {
+    background-color: $primary-color;
+  }
+
+  .switch:checked + .switch-label::before {
+    transform: translateX(24px);
+  }
+
+  
+}

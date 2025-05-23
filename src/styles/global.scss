@@ -1,0 +1,25 @@
+@import './reset';
+@import './variables';
+@import './grid';
+@import './form';
+@import './buttons';
+
+body {
+  font-family: $font-family;
+  background-color: #fcfcfc;
+  color: $text-color;
+}
+
+h1, h2, h3 {
+  font-weight: 500;
+}
+
+h1{
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+h2{
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}

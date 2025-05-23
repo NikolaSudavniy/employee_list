@@ -1,0 +1,23 @@
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: $border-radius;
+  cursor: pointer;
+  background-color: $primary-color;
+  color: white;
+  font-weight: bold;
+  font-family: $font-family;
+  transition: background-color $transition-speed;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+
+  &.delete-button {
+    background-color: $error-color;
+
+    &:hover {
+      background-color: darken($error-color, 10%);
+    }
+  }
+}
